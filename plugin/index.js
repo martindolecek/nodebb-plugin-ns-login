@@ -14,7 +14,7 @@
 
         store        = new ExpressBrute.MemoryStore(),
         settings     = {
-            freeRetries : 5,
+            freeRetries : 50,
             proxyDepth  : 1,
             minWait     : 5 * 60 * 1000, // 5 minutes
             maxWait     : 60 * 60 * 1000, // 1 hour,
@@ -40,6 +40,7 @@
                 router.post(
                     apiUri,
                     userDefence.getMiddleware({
+                        ignoreIP: true, // Set true if API is used interlanny from other components
                         key: function (req, res, next) {
                             // prevent too many attempts for the same username
                             next(req.body.username);
