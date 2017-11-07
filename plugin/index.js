@@ -109,6 +109,10 @@
                             }
                             winston.log('verbose', '[plugins/ns-login] Successful external login, uid: %d', uid);
                             res.json(user);
+                            
+                            // Reset the failure counter
+                            req.brute.reset(function () {});
+                            
                         });
                     });
 
